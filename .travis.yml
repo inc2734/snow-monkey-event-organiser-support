@@ -1,0 +1,41 @@
+dist: trusty
+sudo: false
+language: php
+php:
+- 7.2
+- 7.3
+env:
+  global:
+  - WP_VERSION=latest WP_MULTISITE=0
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+branches:
+  only:
+  - master
+  - develop
+  - "/\\d+\\.\\d+\\.\\d+?.*/"
+cache:
+  directories:
+  - "$HOME/.composer/cache"
+  - node_modules
+  - vendor
+install:
+- nvm install 8
+- npm install
+- composer install
+before_deploy:
+- npm run zip
+- ls -la snow-monkey-event-organiser-support.zip
+- export RELEASE_FILE=$(ls snow-monkey-event-organiser-support.zip)
+deploy:
+  provider: releases
+  api_key:
+    secure: lgEM2kRwFU4LNr8ztYrtUg++umiKkYu3IOFN2Ly2pfYdzW5iyzjWUWlcMpzxtWVoNW/YRJVMS6/4lPJ4UNeMWkwGKi8jgGFTjGE/3jCzxLJeQADHw3ssvlRUU/tlY/lV2RUikDOIgQRMrQBqhK7jZlnRORn9ESZ3kxYWu06GcEu300rwUxr0LiT+ngANZL0ImZxa2+bLBHFEvNPGBr2wmsLFlJH6uFJK4P6UNlBKNqmOxMrYGj9VHhUxKkAhawRdJ6OKqDJOTRZhMcEJmoAnoYt6ajOIlc9lRTlUUiu2/0nC7OiV2O/WFizvG7c7UM+gaBp913XIjfCQqEFJFFYR+6VStS2nifznUOioACvWSNZ5GWTce4fi/AkdB1QO/9ODC8VDx/UYRpj0ArkpMc3duhKCw9h31fWdVvHaIGDSgLckiCkXaywFbmqh+d70O0ecVon8tNBQ5qB5yo24hDb/g2DDRn3HnWe9zLg1XCuTq10McMCJy6pE+XkEsD2bdlCv945HoUpBgNSrAHhbcb7N0CbF2qWzsAdWUyWMfpU7Yx+Q8bDOQKcRpgAk1QBth7kQLHYMYmrX9WcJswn5s3rcTUbu111lW21pUaiYRAVrRykJXzWrlcIK4hh2svVzyhKQ5qYJpUEUtrWMlKg6vobzz3dA4MnSnQKIalT6xzayIB8=
+  file: "${RELEASE_FILE}"
+  skip_cleanup: true
+  on:
+    tags: true
+    php: 7.3
+    repo: inc2734/snow-monkey-event-organiser-support
