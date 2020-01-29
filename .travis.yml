@@ -25,6 +25,8 @@ install:
 - nvm install 8
 - npm install
 - composer install
+script:
+- composer test
 before_deploy:
 - npm run zip
 - ls -la snow-monkey-event-organiser-support.zip

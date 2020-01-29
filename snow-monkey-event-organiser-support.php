@@ -18,6 +18,7 @@ namespace Snow_Monkey\Plugin\EventOrganiserSupport;
 
 use Snow_Monkey\Plugin\EventOrganiserSupport\App\Controller;
 use Framework\Helper;
+use Inc2734\WP_GitHub_Plugin_Updater\Bootstrap as Updater;
 
 define( 'SNOW_MONKEY_EVENT_ORGANISER_SUPPORT_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'SNOW_MONKEY_EVENT_ORGANISER_SUPPORT_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
@@ -51,7 +52,7 @@ class Bootstrap {
 	}
 
 	public function _activate_autoupdate() {
-		new \Inc2734\WP_GitHub_Plugin_Updater\Bootstrap(
+		new Updater(
 			plugin_basename( __FILE__ ),
 			'inc2734',
 			'snow-monkey-event-organiser-support'
