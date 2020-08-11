@@ -3,7 +3,7 @@
   "license": "GPL-2.0+",
   "dependencies": {},
   "devDependencies": {
-    "rimraf": "^3.0.0"
+    "rimraf": "^3.0.2"
   },
   "scripts": {
     "clean:zip": "rimraf snow-monkey-event-organiser-support.zip",

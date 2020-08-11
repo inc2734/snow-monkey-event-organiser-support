@@ -3,6 +3,9 @@
  * Plugin name: Snow Monkey Event Organiser Support
  * Description: With this plugin, Snow Monkey can use Event Organiser plugin.
  * Version: 0.1.0
+ * Tested up to: 5.5
+ * Requires at least: 5.5
+ * Requires PHP: 5.6
  * Author: inc2734
  * Author URI: https://2inc.org
  * License: GPL2 or later
@@ -55,7 +58,10 @@ class Bootstrap {
 		new Updater(
 			plugin_basename( __FILE__ ),
 			'inc2734',
-			'snow-monkey-event-organiser-support'
+			'snow-monkey-event-organiser-support',
+			[
+				'homepage' => 'https://snow-monkey.2inc.org',
+			]
 		);
 	}
 }
