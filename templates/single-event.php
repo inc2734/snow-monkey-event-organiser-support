@@ -7,5 +7,14 @@
 
 use Framework\Controller\Controller;
 
-Controller::layout( get_theme_mod( 'single-page-layout' ) );
-Controller::render( 'content', 'event' );
+$default_layout = get_theme_mod( 'single-page-layout' );
+$default_layout = $default_layout ? $default_layout : get_theme_mod( 'post-layout' );
+
+$layout = get_theme_mod( 'event-layout' );
+$layout = $layout ? $layout : $default_layout;
+
+$content_view = get_theme_mod( 'event-view' );
+$content_view = $content_view ? $content_view : 'event';
+
+Controller::layout( $layout );
+Controller::render( 'content', $content_view );

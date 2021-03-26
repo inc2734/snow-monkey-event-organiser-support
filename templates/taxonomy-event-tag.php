@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-use Framework\Controller\Controller;
-
-Controller::layout( get_theme_mod( 'archive-page-layout' ) );
-Controller::render( 'taxonomy', 'event-tag' );
+/**
+ * Using archive-event.php.
+ */
+include( SNOW_MONKEY_EVENT_ORGANISER_SUPPORT_PATH . '/templates/archive-event.php' );

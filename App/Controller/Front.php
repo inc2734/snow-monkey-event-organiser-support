@@ -9,17 +9,43 @@ namespace Snow_Monkey\Plugin\EventOrganiserSupport\App\Controller;
 
 class Front {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
-		add_filter( 'eventorganiser_template_stack', [ $this, '_eventorganiser_template_stack' ] );
-		add_filter( 'snow_monkey_template_part_root_hierarchy', [ $this, '_snow_monkey_template_part_root_hierarchy' ], 10, 3 );
-		add_filter( 'inc2734_wp_view_controller_render_type', [ $this, '_inc2734_wp_view_controller_render_type' ] );
+		add_filter(
+			'eventorganiser_template_stack',
+			[ $this, '_eventorganiser_template_stack' ]
+		);
+
+		add_filter(
+			'snow_monkey_template_part_root_hierarchy',
+			[ $this, '_snow_monkey_template_part_root_hierarchy' ]
+		);
+
+		add_filter(
+			'inc2734_wp_view_controller_render_type',
+			[ $this, '_inc2734_wp_view_controller_render_type' ]
+		);
 	}
 
+	/**
+	 * Filters the template stack: an array of directories the plug-in looks for for templates.
+	 *
+	 * @param array $stack Array of directories (absolute path).
+	 * @return array
+	 */
 	public function _eventorganiser_template_stack( $stack ) {
 		return $stack;
 	}
 
-	public function _snow_monkey_template_part_root_hierarchy( $hierarchy, $slug, $name ) {
+	/**
+	 * Add template part root hierarchy.
+	 *
+	 * @param array $hierarchy Array of template part root hierarchy.
+	 * @return array
+	 */
+	public function _snow_monkey_template_part_root_hierarchy( $hierarchy ) {
 		global $wp_query;
 		$post_type = $wp_query->get( 'post_type' );
 
@@ -31,6 +57,11 @@ class Front {
 		return $hierarchy;
 	}
 
+	/**
+	 * Change rendered type.
+	 *
+	 * @param boolean $render_type "direct" or "loop".
+	 */
 	public function _inc2734_wp_view_controller_render_type( $render_type ) {
 		if ( ! is_singular( 'event' ) ) {
 			return $render_type;

@@ -13,7 +13,15 @@
 	<!-- Page header, display category title-->
 	<header class="page-header">
 		<h1 class="page-title">
-			<?php printf( __( 'Event Category: %s', 'eventorganiser' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?>
+			<?php
+			// phpcs:disable WordPress.WP.I18n.MissingTranslatorsComment
+			// phpcs:disable WordPress.WP.I18n.TextDomainMismatch
+			printf(
+				__( 'Event Category: %s', 'eventorganiser' ),
+				'<span>' . single_cat_title( '', false ) . '</span>'
+			);
+			// phpcs:enable
+			?>
 		</h1>
 
 		<!-- If the category has a description display it-->
@@ -25,6 +33,6 @@
 		?>
 	</header>
 
-	<?php eo_get_template_part( 'eo-loop-events' ); //Lists the events ?>
+	<?php eo_get_template_part( 'eo-loop-events' ); // Lists the events ?>
 
 </div><!-- #primary -->

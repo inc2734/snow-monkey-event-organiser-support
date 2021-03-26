@@ -11,7 +11,10 @@
 <div id="primary">
 	<div id="content" role="main">
 
-		<?php while ( have_posts() ) : the_post(); ?>
+		<?php
+		while ( have_posts() ) :
+			the_post();
+			?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -32,22 +35,33 @@
 
 			<footer class="entry-meta">
 			<?php
-			//Events have their own 'event-category' taxonomy. Get list of categories this event is in.
-			$categories_list = get_the_term_list( get_the_ID(), 'event-category', '', ', ','' );
+			// Events have their own 'event-category' taxonomy. Get list of categories this event is in.
+			$categories_list = get_the_term_list( get_the_ID(), 'event-category', '', ', ', '' );
 
-			if ( '' != $categories_list ) {
+			if ( '' !== $categories_list ) {
+				// phpcs:disable WordPress.WP.I18n.MissingTranslatorsComment
+				// phpcs:disable WordPress.WP.I18n.TextDomainMismatch
 				$utility_text = __( 'This event was posted in %1$s by <a href="%3$s">%2$s</a>.', 'eventorganiser' );
+				// phpcs:enable
 			} else {
+				// phpcs:disable WordPress.WP.I18n.MissingTranslatorsComment
+				// phpcs:disable WordPress.WP.I18n.TextDomainMismatch
 				$utility_text = __( 'This event was posted by <a href="%3$s">%2$s</a>.', 'eventorganiser' );
+				// phpcs:enable
 			}
-			printf($utility_text,
+			printf(
+				$utility_text,
 				$categories_list,
 				get_the_author(),
 				esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) )
 			);
 			?>
 
-			<?php edit_post_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
+			<?php
+			// phpcs:disable WordPress.WP.I18n.MissingArgDomain
+			edit_post_link( __( 'Edit' ), '<span class="edit-link">', '</span>' );
+			// phpcs:enable
+			?>
 			</footer><!-- .entry-meta -->
 
 			</article><!-- #post-<?php the_ID(); ?> -->

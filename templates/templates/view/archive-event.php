@@ -15,21 +15,29 @@
 		<h1 class="page-title">
 		<?php
 		if ( eo_is_event_archive( 'day' ) ) {
-			//Viewing date archive
-			echo __( 'Events: ','eventorganiser' ) . ' ' . eo_get_event_archive_date( 'jS F Y' );
+			// Viewing date archive
+			// phpcs:disable WordPress.WP.I18n.TextDomainMismatch
+			echo __( 'Events: ', 'eventorganiser' ) . ' ' . eo_get_event_archive_date( 'jS F Y' );
+			// phpcs:enable
 		} elseif ( eo_is_event_archive( 'month' ) ) {
-			//Viewing month archive
-			echo __( 'Events: ','eventorganiser' ) . ' ' . eo_get_event_archive_date( 'F Y' );
+			// Viewing month archive
+			// phpcs:disable WordPress.WP.I18n.TextDomainMismatch
+			echo __( 'Events: ', 'eventorganiser' ) . ' ' . eo_get_event_archive_date( 'F Y' );
+			// phpcs:enable
 		} elseif ( eo_is_event_archive( 'year' ) ) {
-			//Viewing year archive
-			echo __( 'Events: ','eventorganiser' ) . ' ' . eo_get_event_archive_date( 'Y' );
+			// Viewing year archive
+			// phpcs:disable WordPress.WP.I18n.TextDomainMismatch
+			echo __( 'Events: ', 'eventorganiser' ) . ' ' . eo_get_event_archive_date( 'Y' );
+			// phpcs:enable
 		} else {
+			// phpcs:disable WordPress.WP.I18n.TextDomainMismatch
 			_e( 'Events', 'eventorganiser' );
+			// phpcs:enable
 		}
 		?>
 		</h1>
 	</header>
 
-	<?php eo_get_template_part( 'eo-loop-events' ); //Lists the events ?>
+	<?php eo_get_template_part( 'eo-loop-events' ); // Lists the events ?>
 
 </div><!-- #primary -->
