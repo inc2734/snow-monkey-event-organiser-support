@@ -19,6 +19,13 @@ class Front {
 		);
 
 		add_filter(
+			'inc2734_wp_view_controller_expand_get_template_part',
+			[ $this, '_expand_get_template_part' ],
+			11,
+			2
+		);
+
+		add_filter(
 			'snow_monkey_template_part_root_hierarchy',
 			[ $this, '_snow_monkey_template_part_root_hierarchy' ]
 		);
@@ -37,6 +44,23 @@ class Front {
 	 */
 	public function _eventorganiser_template_stack( $stack ) {
 		return $stack;
+	}
+
+	/**
+	 * Expand get_template_part().
+	 *
+	 * @param boolean $expand If true, expand get_template_part().
+	 * @param array   $args   The template part args.
+	 * @return boolean
+	 */
+	public function _expand_get_template_part( $expand, $args ) {
+		if (
+			'templates/view/content' === $args['slug'] && 'event' === $args['name']
+			|| 'templates/view/archive' === $args['slug'] && 'event' === $args['name']
+		) {
+			return true;
+		}
+		return $expand;
 	}
 
 	/**
