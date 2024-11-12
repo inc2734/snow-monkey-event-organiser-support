@@ -39,7 +39,7 @@
 		"test:unit": "run-s test:unit:*",
 		"test": "run-s test:*",
 		"clean:zip": "rimraf snow-monkey-event-organiser-support.zip",
-		"zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='.*' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='*.ruleset.xml' --exclude='/bin' --exclude='/tests' --exclude='package*.json' . snow-monkey-event-organiser-support && wp-env start && wp-env run composer 'install --no-dev -d snow-monkey-event-organiser-support'",
+		"zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='.*' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='*.ruleset.xml' --exclude='/bin' --exclude='/tests' --exclude='package*.json' . snow-monkey-event-organiser-support && npm run wp-env start && npm run composer install -- --no-dev -d snow-monkey-event-organiser-support",
 		"zip:archive": "zip -9 -qmr snow-monkey-event-organiser-support.zip snow-monkey-event-organiser-support",
 		"zip": "npm run clean:zip && npm run zip:pack && npm run zip:archive"
 	}
