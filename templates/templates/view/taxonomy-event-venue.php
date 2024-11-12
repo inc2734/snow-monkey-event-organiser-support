@@ -19,6 +19,7 @@
 			<?php
 			// phpcs:disable WordPress.WP.I18n.MissingTranslatorsComment
 			// phpcs:disable WordPress.WP.I18n.TextDomainMismatch
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 			printf(
 				__( 'Events at: %s', 'eventorganiser' ),
 				'<span>' . eo_get_venue_name( $venue_id ) . '</span>'
@@ -28,23 +29,21 @@
 		</h1>
 
 		<?php
-		// phpcs:disable WordPress.CodeAnalysis.AssignmentInCondition.Found
-		// phpcs:disable Squiz.PHP.DisallowMultipleAssignments.FoundInControlStructure
-		if ( $venue_description = eo_get_venue_description( $venue_id ) ) {
-			echo '<div class="venue-archive-meta">' . $venue_description . '</div>';
+		$venue_description = eo_get_venue_description( $venue_id );
+		if ( $venue_description ) {
+			echo '<div class="venue-archive-meta">' . $venue_description . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
-		// phpcs:enable
 		?>
 
 		<!-- Display the venue map. If you specify a class, ensure that class has height/width dimensions-->
 		<?php
 		if ( eo_venue_has_latlng( $venue_id ) ) {
-			echo eo_get_venue_map( $venue_id, array( 'width' => '100%' ) );
+			echo eo_get_venue_map( $venue_id, array( 'width' => '100%' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		?>
 
 	</header>
 
-	<?php eo_get_template_part( 'eo-loop-events' ); // Lists the events ?>
+	<?php eo_get_template_part( 'eo-loop-events' ); // Lists the events. ?>
 
 </div><!-- #primary -->

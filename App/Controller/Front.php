@@ -15,24 +15,24 @@ class Front {
 	public function __construct() {
 		add_filter(
 			'eventorganiser_template_stack',
-			[ $this, '_eventorganiser_template_stack' ]
+			array( $this, '_eventorganiser_template_stack' )
 		);
 
 		add_filter(
 			'inc2734_wp_view_controller_expand_get_template_part',
-			[ $this, '_expand_get_template_part' ],
+			array( $this, '_expand_get_template_part' ),
 			11,
 			2
 		);
 
 		add_filter(
 			'snow_monkey_template_part_root_hierarchy',
-			[ $this, '_snow_monkey_template_part_root_hierarchy' ]
+			array( $this, '_snow_monkey_template_part_root_hierarchy' )
 		);
 
 		add_filter(
 			'inc2734_wp_view_controller_render_type',
-			[ $this, '_inc2734_wp_view_controller_render_type' ]
+			array( $this, '_inc2734_wp_view_controller_render_type' )
 		);
 	}
 
@@ -55,8 +55,8 @@ class Front {
 	 */
 	public function _expand_get_template_part( $expand, $args ) {
 		if (
-			'templates/view/content' === $args['slug'] && 'event' === $args['name']
-			|| 'templates/view/archive' === $args['slug'] && 'event' === $args['name']
+			( 'templates/view/content' === $args['slug'] && 'event' === $args['name'] ) ||
+			( 'templates/view/archive' === $args['slug'] && 'event' === $args['name'] )
 		) {
 			return true;
 		}

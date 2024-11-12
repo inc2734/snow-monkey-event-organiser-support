@@ -16,6 +16,7 @@
 			<?php
 			// phpcs:disable WordPress.WP.I18n.MissingTranslatorsComment
 			// phpcs:disable WordPress.WP.I18n.TextDomainMismatch
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 			printf(
 				__( 'Event Tag: %s', 'eventorganiser' ),
 				'<span>' . single_cat_title( '', false ) . '</span>'
@@ -28,11 +29,11 @@
 		<?php
 		$tag_description = category_description();
 		if ( ! empty( $tag_description ) ) {
-			echo apply_filters( 'category_archive_meta', '<div class="category-archive-meta">' . $tag_description . '</div>' );
+			echo apply_filters( 'category_archive_meta', '<div class="category-archive-meta">' . $tag_description . '</div>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		?>
 	</header>
 
-	<?php eo_get_template_part( 'eo-loop-events' ); // Lists the events ?>
+	<?php eo_get_template_part( 'eo-loop-events' ); // Lists the events. ?>
 
 </div><!-- #primary -->

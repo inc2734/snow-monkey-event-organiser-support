@@ -50,8 +50,8 @@
 				// phpcs:enable
 			}
 			printf(
-				$utility_text,
-				$categories_list,
+				$utility_text, // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+				$categories_list, // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 				get_the_author(),
 				esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) )
 			);

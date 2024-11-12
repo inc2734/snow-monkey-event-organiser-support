@@ -8,4 +8,4 @@
 /**
  * Using archive-event.php.
  */
-include( SNOW_MONKEY_EVENT_ORGANISER_SUPPORT_PATH . '/templates/archive-event.php' );
+require SNOW_MONKEY_EVENT_ORGANISER_SUPPORT_PATH . '/templates/archive-event.php';

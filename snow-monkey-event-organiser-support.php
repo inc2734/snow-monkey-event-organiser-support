@@ -5,7 +5,7 @@
  * Version: 0.4.1
  * Tested up to: 5.9
  * Requires at least: 5.7
- * Requires PHP: 5.6
+ * Requires PHP: 7.4
  * Requires Snow Monkey: 14.0.0
  * Author: inc2734
  * Author URI: https://2inc.org
@@ -33,7 +33,7 @@ class Bootstrap {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_action( 'plugins_loaded', [ $this, '_plugins_loaded' ] );
+		add_action( 'plugins_loaded', array( $this, '_plugins_loaded' ) );
 	}
 
 	/**
@@ -46,13 +46,13 @@ class Bootstrap {
 			basename( __DIR__ ) . '/languages'
 		);
 
-		add_action( 'init', [ $this, '_activate_autoupdate' ] );
+		add_action( 'init', array( $this, '_activate_autoupdate' ) );
 
 		$theme = wp_get_theme( get_template() );
 		if ( 'snow-monkey' !== $theme->template && 'snow-monkey/resources' !== $theme->template ) {
 			add_action(
 				'admin_notices',
-				function() {
+				function () {
 					?>
 					<div class="notice notice-warning is-dismissible">
 						<p>
@@ -67,9 +67,9 @@ class Bootstrap {
 
 		$data = get_file_data(
 			__FILE__,
-			[
+			array(
 				'RequiresSnowMonkey' => 'Requires Snow Monkey',
-			]
+			)
 		);
 
 		if (
@@ -78,14 +78,14 @@ class Bootstrap {
 		) {
 			add_action(
 				'admin_notices',
-				function() use ( $data ) {
+				function () use ( $data ) {
 					?>
 					<div class="notice notice-warning is-dismissible">
 						<p>
 							<?php
 							echo esc_html(
 								sprintf(
-									// translators: %1$s: version
+									// Translators: %1$s: version.
 									__(
 										'[Snow Monkey Event Organiser Integrator] Needs the Snow Monkey %1$s or more.',
 										'snow-monkey-event-organiser-support'
@@ -105,7 +105,7 @@ class Bootstrap {
 		if ( ! defined( 'EVENT_ORGANISER_VER' ) ) {
 			add_action(
 				'admin_notices',
-				function() {
+				function () {
 					?>
 					<div class="notice notice-warning is-dismissible">
 						<p>
@@ -120,7 +120,7 @@ class Bootstrap {
 
 		add_action(
 			'after_setup_theme',
-			function() {
+			function () {
 				new Controller\Front();
 			}
 		);
@@ -134,12 +134,12 @@ class Bootstrap {
 			plugin_basename( __FILE__ ),
 			'inc2734',
 			'snow-monkey-event-organiser-support',
-			[
+			array(
 				'homepage' => 'https://snow-monkey.2inc.org',
-			]
+			)
 		);
 	}
 }
 
-require_once( SNOW_MONKEY_EVENT_ORGANISER_SUPPORT_PATH . '/vendor/autoload.php' );
+require_once SNOW_MONKEY_EVENT_ORGANISER_SUPPORT_PATH . '/vendor/autoload.php';
 new Bootstrap();
