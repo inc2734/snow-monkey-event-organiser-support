@@ -3,8 +3,8 @@
  * Plugin name: Snow Monkey Event Organiser Integrator
  * Description: With this plugin, Snow Monkey can use Event Organiser plugin.
  * Version: 0.4.2
- * Tested up to: 5.9
- * Requires at least: 5.7
+ * Tested up to: 6.7
+ * Requires at least: 6.7
  * Requires PHP: 7.4
  * Requires Snow Monkey: 14.0.0
  * Author: inc2734
