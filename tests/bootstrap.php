@@ -68,6 +68,8 @@ function _manually_load_plugin() {
 		'__return_false'
 	);
 
+	register_theme_directory( $theme_root );
+	require_once WP_PLUGIN_DIR . '/event-organiser/event-organiser.php';
 	require dirname( dirname( __FILE__ ) ) . '/snow-monkey-event-organiser-support.php';
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
@@ -101,6 +103,9 @@ $GLOBALS['wp_tests_options'] = array(
 
 // Start up the WP testing environment.
 require $_tests_dir . '/includes/bootstrap.php';
+
+// Create Event Organiser tables and options in the isolated test database.
+eventorganiser_install();
 
 // Use existing behavior for wp_die during actual test execution.
 remove_filter( 'wp_die_handler', 'fail_if_died' );

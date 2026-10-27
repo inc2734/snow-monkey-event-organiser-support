@@ -1,5 +1,7 @@
 {
 	"core": null,
+	"port": 8888,
+	"testsEnvironment": false,
 	"plugins": [
 		".",
 		"https://downloads.wordpress.org/plugin/event-organiser.zip"

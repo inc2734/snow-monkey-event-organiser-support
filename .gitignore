@@ -8,6 +8,7 @@ dist/
 snow-monkey-event-organiser-support/
 snow-monkey-event-organiser-support.zip
 .wp-env.override.json
+.wp-env.tests.override.json
 /.themes/
 /.export/*
 .phpunit.result.cache
